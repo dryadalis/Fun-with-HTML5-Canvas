@@ -7,6 +7,7 @@ canvas.height = window.innerHeight;
 ctx.strokeStyle = "#BADA55";
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
+ctx.lineWidth = 50;
 
 let isDrawing = false 
 let lastX = 0; // Where do you start line from?
@@ -25,7 +26,11 @@ function draw(e) {
     [lastX, lastY] = [e.offsetX, e.offsetY];
 }
 canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('mousedown', () => isDrawing = true);// draw only wen mouse is down
+canvas.addEventListener('mousedown', (e) => {
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+});// draw only wen mouse is down, start when we want to 
+
 canvas.addEventListener('mouseup', () => isDrawing = false);
 canvas.addEventListener('mouseout', () => isDrawing = false);
 
